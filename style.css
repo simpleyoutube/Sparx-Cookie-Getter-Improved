@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  width: 260px;
+  height: auto;
+
+  font-family: "Segoe UI", sans-serif;
+
+  background: radial-gradient(circle at top, #141826, #0f1117 60%);
+}
+
+body {
+  padding: 10px;
+}
+
+.container {
+  position: relative;
+
+  width: 100%;
+  padding: 18px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 0 25px rgba(0,0,0,0.6),
+    inset 0 0 12px rgba(255,255,255,0.05);
+
+  text-align: center;
+  color: white;
+
+  overflow: hidden;
+}
+
+.glow-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #3a86ff,
+    #6a5cff,
+    #00ffae,
+    #3a86ff
+  );
+
+  background-size: 300% 300%;
+  animation: borderMove 6s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 17px;
+  color: #7db2ff;
+}
+
+button {
+  width: 100%;
+  padding: 11px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #3a86ff, #6a5cff);
+  color: white;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  box-shadow: 0 0 14px rgba(58,134,255,0.5);
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 25px rgba(58,134,255,0.9);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+#status {
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.success { color: #00ffae; }
+.error { color: #ff4d4d; }
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.06),
+    transparent
+  );
+
+  transform: rotate(25deg);
+
+  animation: lightSweep 4s linear infinite;
+
+  pointer-events: none;
+}
+
+@keyframes lightSweep {
+  0% { transform: translateX(-60%) rotate(25deg); }
+  100% { transform: translateX(60%) rotate(25deg); }
+}
